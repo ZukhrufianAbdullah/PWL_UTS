@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('penjualan_kode', 20);
             $table->dateTime('penjualan_tanggal');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kategori_kode', 10);
             $table->string('kategori_nama', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

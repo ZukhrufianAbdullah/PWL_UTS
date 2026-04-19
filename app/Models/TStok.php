@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TStok extends Model
 {
+    use SoftDeletes;
     protected $table = 't_stok';
     protected $primaryKey = 'stok_id';
     protected $fillable = ['barang_id', 'supplier_id', 'user_id', 'stok_jumlah', 'stok_tanggal'];
