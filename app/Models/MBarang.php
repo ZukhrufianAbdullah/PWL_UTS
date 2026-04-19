@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class MBarang extends Model
+{
+    protected $table = 'm_barang';
+    protected $primaryKey = 'barang_id';
+    protected $fillable = ['kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'];
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(MKategori::class, 'kategori_id', 'kategori_id');
+    }
+
+    public function stok(): HasMany
+    {
+        return $this->hasMany(TStok::class, 'barang_id', 'barang_id');
+    }
+
+    public function penjualanDetail(): HasMany
+    {
+        return $this->hasMany(TPenjualanDetail::class, 'barang_id', 'barang_id');
+    }
+
+    public function getStokSekarangAttribute()
+    {
+        return $this->stok()->sum('stok_jumlah');
+    }
+}
