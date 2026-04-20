@@ -24,7 +24,7 @@ class StokResource extends Resource
     static ?string $navigationLabel = 'Stok';
     protected static ?string $modelLabel = 'Stok';
     protected static ?string $pluralModelLabel = 'Stok';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
     public static function form(Schema $schema): Schema
     {
         return StokForm::configure($schema);
