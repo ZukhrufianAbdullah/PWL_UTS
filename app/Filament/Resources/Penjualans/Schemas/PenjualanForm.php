@@ -22,6 +22,11 @@ class PenjualanForm
             ->components([
                 Section::make('Informasi Penjualan')
                     ->schema([
+                        Select::make('user_id')
+                            ->relationship('user', 'nama')
+                            ->required()
+                            ->default(Auth::id())
+                            ->hiddenOn('edit'),
                         TextInput::make('penjualan_kode')
                             ->required()
                             ->maxLength(20)

@@ -18,6 +18,9 @@ class StokForm
                 Select::make('supplier_id')
                     ->relationship('supplier', 'supplier_nama')
                     ->required(),
+                Select::make('user_id')
+                    ->relationship('user', 'nama')
+                    ->required(),
                 Select::make('barang_id')
                     ->relationship('barang', 'barang_nama')
                     ->required(),
