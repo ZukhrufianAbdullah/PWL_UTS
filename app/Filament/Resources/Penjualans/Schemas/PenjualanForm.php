@@ -65,7 +65,7 @@ class PenjualanForm
                             Section::make('Detail Barang')
                                 ->schema([
                                     Repeater::make('details')
-                                        ->relationship()
+                                        ->dehydrated(true)
                                         ->schema([
                                             Select::make('barang_id')
                                                 ->label('Barang')
@@ -92,7 +92,7 @@ class PenjualanForm
                                                         $harga = $barang->harga_jual;
                                                         $jumlah = $get('jumlah') ?? 1;
 
-                                                        $set('subtotal', $harga * $jumlah);
+                                                        $set('subtotal', (int)$harga * (int)$jumlah);
                                                     }
                                                 }),
 
@@ -111,7 +111,7 @@ class PenjualanForm
                                                 ->afterStateUpdated(function ($state, Set $set, Get $get) {
                                                     $harga = $get('harga') ?? 0;
 
-                                                    $set('subtotal', $harga * $state);
+                                                    $set('subtotal', (int)$harga * (int)$state);
                                                 }),
 
                                             TextInput::make('subtotal')
@@ -141,7 +141,7 @@ class PenjualanForm
                                             $details = $get('details') ?? [];
 
                                             foreach ($details as $detail) {
-                                                $total += ($detail['harga'] ?? 0) * ($detail['jumlah'] ?? 0);
+                                                $total += (int)($detail['harga'] ?? 0) * (int)($detail['jumlah'] ?? 0);
                                             }
 
                                             return number_format($total, 0, ',', '.');
@@ -161,7 +161,7 @@ class PenjualanForm
         $details = $get('details') ?? [];
 
         foreach ($details as $detail) {
-            $total += ($detail['harga'] ?? 0) * ($detail['jumlah'] ?? 0);
+            $total += (int)($detail['harga'] ?? 0) * (int)($detail['jumlah'] ?? 0);
         }
         $set('total', $total);
     }
