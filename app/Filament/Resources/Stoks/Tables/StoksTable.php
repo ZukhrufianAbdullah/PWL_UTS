@@ -33,7 +33,7 @@ class StoksTable
                     ->label('Jumlah')
                     ->sortable(),
                 TextColumn::make('user.nama')
-                    ->label('User')
+                    ->label('Staff')
                     ->sortable(),
                 TextColumn::make('stok_tanggal')
                     ->label('Tanggal')
